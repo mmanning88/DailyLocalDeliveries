@@ -1,13 +1,18 @@
 # Author: Matthew Manning
 # Student ID: #000967779
 
-from packageDelivery import hashTable, Package
-from hashtable import HashTable
-import sys, time
+import sys
+import time
 from datetime import datetime
 
-# This is used to find the computational time of the program
+from hashtable import HashTable
+from packageDelivery import hashTable, Package
+
+# This is used to find the computational time of the program, time is started at beginning of program and ended
+# when all packages are delivered
 time_elapsed = time.process_time()
+
+
 # This functions starts the interface for users to retrieve info on packages
 def main():
     print('''Welcome to Western Governors University Parcel Service's Daily Local Deliveries package lookup system.''')
@@ -47,15 +52,14 @@ def package_lookup():
             if temp_pckg is None:
                 print('Package not found')
             else:
-                print('Package ID: ' + str(temp_pckg.packageID))
-                print('Destination Address: ' + temp_pckg.address + ' ' + temp_pckg.city
-                      + ' ' + temp_pckg.state + ' ' + temp_pckg.zip_code)
-                print('Deadline for delivery: ' + temp_pckg.deadline)
-                print('Package weight: ' + str(temp_pckg.weight))
-                print('Special notes: ' + temp_pckg.special_notes)
-                print('Delivery status: ' + temp_pckg.status)
-                print('Loaded on truck at : ' + temp_pckg.timestamp_start)
-                print('Delivered to destination at : ' + temp_pckg.timestamp_delivered)
+                print('Package ID: %s' % temp_pckg.packageID)
+                print("Destination Address: %s %s %s %s" % (temp_pckg.address, temp_pckg.city, temp_pckg.state, temp_pckg.zip_code))
+                print('Deadline for delivery: %s' % temp_pckg.deadline)
+                print('Package weight: %d' % temp_pckg.weight)
+                print('Special notes: %s' % temp_pckg.special_notes)
+                print('Delivery status %s ' % temp_pckg.status)
+                print('Loaded on truck at : %s' % temp_pckg.timestamp_start)
+                print('Delivered to destination at : %s' % temp_pckg.timestamp_delivered)
         else:
             print('Not a valid command!')
     except ValueError:
@@ -102,13 +106,14 @@ def all_packages():
 
     except ValueError:
         print('Enter time in correct format!')
-    print('Package ID | Address | City | State | Zip Code | Delivery Deadline | Weight | Special Notes | Timestamp for at hub or when loaded on truck | Delivery Timestamp')
+    print(
+        'Package ID | Address | City | State | Zip Code | Delivery Deadline | Weight | Special Notes | Timestamp for '
+        'at hub or when loaded on truck | Delivery Timestamp')
     for package in temp_hashtable.sort_keys():
         print(temp_hashtable.search(package).all_details)
     temp_hashtable.table.clear()
 
 
-print('Total computational time: ' + str(time_elapsed))
+print("{} {}".format('Total computational time: ', time_elapsed))
 if __name__ == "__main__":
     main()
-

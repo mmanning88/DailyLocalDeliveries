@@ -26,10 +26,10 @@ class Truck:
         if len(self.packages_held) >= 16:
             print('Truck is full')
         elif temp_package.status == 'On-Route':
-            print('Package ' + str(package) + ' already on another truck')
+            print('Package %s already on another truck' % package)
             return None
         elif temp_package.status == 'Delivered':
-            print('Package ' + str(package) + ' already delivered')
+            print('Package %s already delivered' % package)
             return None
         elif isinstance(temp_package, Package):
             temp_package.status = 'On-Route'
@@ -265,6 +265,7 @@ for package in hashTable.sort_keys():
         delivered.append(False)
 if all(delivered):
     print('All packages delivered, program executed successfully.')
-print('Total distance traveled by all trucks: ' + str(truck1.distance_traveled + truck2.distance_traveled))
+total_distance = truck1.distance_traveled + truck2.distance_traveled
+print('Total distance traveled by all trucks: %s' % total_distance)
 
 
